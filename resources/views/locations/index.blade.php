@@ -4,6 +4,7 @@
         <h1>Locations list</h1>
 
         <a href="{{ route('locations.create') }}" class="btn btn-success mb-3" title="Add location"><i class="fas fa-map-marker-alt"></i> Add location</a>
+        <a href="{{ route('welcome') }}" class="btn btn-primary mb-3" title="Add location"><i class="fas fa-temperature-high"></i> City forecast</a>
 
         @if($locations->count() == 0)
             <div>No available locations</div>

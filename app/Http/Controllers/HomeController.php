@@ -3,10 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Location;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Log;
 
 class HomeController extends Controller
 {
@@ -17,7 +13,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+//        $this->middleware('guest');
     }
 
     /**
@@ -28,6 +24,7 @@ class HomeController extends Controller
     public function index()
     {
 
+        // Backend version
 //        $minutes = 30;
 ////        $forecasts = Cache::remember('forecast', $minutes, function(){
 ////            $citiesList = collect(json_decode(file_get_contents(base_path('resources/citylist.json'))))->pluck('name','id')->toArray();
@@ -48,6 +45,11 @@ class HomeController extends Controller
 ////            return $forecasts;
 ////        });
 ///
+///         return view('welcome)
+///             ->withForecasts($forecasts);
+
+
+///     Front-end version
         $citiesList = collect(json_decode(file_get_contents(base_path('resources/citylist.json'))))->pluck('name','id')->toArray();
         $locations = Location::all()->pluck('name')->toArray();
         $ids = implode(",", array_keys(array_intersect($citiesList, $locations)));
@@ -56,7 +58,6 @@ class HomeController extends Controller
         return view('welcome')
             ->withIds($ids)
             ->withApiKey($apiKey);
-//            ->withForecasts($forecasts);
 
 
     }
